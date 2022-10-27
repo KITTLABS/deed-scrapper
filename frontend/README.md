@@ -9,7 +9,7 @@ When adding new merge request vercel will create preview deployments for each me
 
 
 ## Backend
-We are using Digital Ocean for running our NodeJS server + our chainlink node.
+We are using Digital Ocean for running our NodeJS server + our chainlink node. Whenever a change is made in the `backend` directory and merged to master it will automatically be released.
 
 Chainlink node repo: https://github.com/KITTLABS/chainlink-node
 
