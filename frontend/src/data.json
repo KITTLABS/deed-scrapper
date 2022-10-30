@@ -1,0 +1,54 @@
+[ 
+    {
+        "Home Value" : "131", 
+        "Value Estimate": "434,876", 
+        "HOA Fees": "21" ,
+        "Property Type": "Single Family", 
+        "Time on Movoto": "1", 
+        "Lot Size": "20,038", 
+        "Year Built": "2015", 
+        "Heating": "Natural Gas", 
+        "Level/Style": "Multi/Split", 
+        "Neighborhood": "Brookhaven", 
+        "County": "Dekalb"
+    }, 
+    {
+        "Home Value": "", 
+        "Value Estimate": "", 
+        "HOA Fees": "" ,
+        "Property Type": "Single Family", 
+        "Time on Movoto": "", 
+        "Lot Size": "", 
+        "Year Built": "2013", 
+        "Heating": "", 
+        "Level/Style": "", 
+        "Neighborhood": "", 
+        "County": "Fulton"
+    }, 
+    {
+        "Home Value": "", 
+        "Value Estimate": "", 
+        "HOA Fees": "" ,
+        "Property Type": "Single Family", 
+        "Time on Movoto" : "", 
+        "Lot Size": "", 
+        "Year Built": "2006", 
+        "Heating": "", 
+        "Level/Style": "", 
+        "Neighborhood": "", 
+        "County": "Cobb"
+    }, 
+    {
+        "Home Value" : "", 
+        "Value Estimate": "", 
+        "HOA Fees": "" ,
+        "Property Type": "Single Family", 
+        "Time on Movoto" : "", 
+        "Lot Size": "", 
+        "Year Built" : "2021", 
+        "Heating" : "", 
+        "Level/Style" : "", 
+        "Neighborhood" : "", 
+        "County" : ""
+    }
+]
