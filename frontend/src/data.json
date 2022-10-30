@@ -1,54 +1,14 @@
 [ 
     {
-        "Home Value" : "131", 
-        "Value Estimate": "434,876", 
-        "HOA Fees": "21" ,
-        "Property Type": "Single Family", 
-        "Time on Movoto": "1", 
-        "Lot Size": "20,038", 
-        "Year Built": "2015", 
-        "Heating": "Natural Gas", 
-        "Level/Style": "Multi/Split", 
-        "Neighborhood": "Brookhaven", 
-        "County": "Dekalb"
-    }, 
-    {
-        "Home Value": "", 
-        "Value Estimate": "", 
-        "HOA Fees": "" ,
-        "Property Type": "Single Family", 
-        "Time on Movoto": "", 
-        "Lot Size": "", 
-        "Year Built": "2013", 
-        "Heating": "", 
-        "Level/Style": "", 
-        "Neighborhood": "", 
-        "County": "Fulton"
-    }, 
-    {
-        "Home Value": "", 
-        "Value Estimate": "", 
-        "HOA Fees": "" ,
-        "Property Type": "Single Family", 
-        "Time on Movoto" : "", 
-        "Lot Size": "", 
-        "Year Built": "2006", 
-        "Heating": "", 
-        "Level/Style": "", 
-        "Neighborhood": "", 
-        "County": "Cobb"
-    }, 
-    {
-        "Home Value" : "", 
-        "Value Estimate": "", 
-        "HOA Fees": "" ,
-        "Property Type": "Single Family", 
-        "Time on Movoto" : "", 
-        "Lot Size": "", 
-        "Year Built" : "2021", 
-        "Heating" : "", 
-        "Level/Style" : "", 
-        "Neighborhood" : "", 
-        "County" : ""
-    }
+        "County": "Dekalb",
+        "Date Of Sale": "6/10/2022",
+        "Deedbook": 13007,
+        "DeedPage": 373,
+        "Property Address": "670 Dekalb Ave",
+        "Property Value": 310000,
+        "Buyer Name": "Dave smith",
+        "Buyer Address": "123 Carry Lane",
+        "Seller Name": "Angela Davis",
+        "Seller Address": "456 Green Court"
+      }
 ]
