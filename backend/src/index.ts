@@ -1,12 +1,11 @@
-import puppeteer from 'puppeteer';
+import puppeteer, { Page } from 'puppeteer';
 
 const _DATASOURCEPAGELOGIN = 'https://www.gsccca.org/';
 const _DATASOURCEPAGESEARCH =
   'https://search.gsccca.org/PT61Premium/AddressSearch.aspx';
+//?? possibly needs to be encrypted at some point
 const _USERNAME = 'dmSmith';
 const _PASSWORD = '799Ln38Lsjqs!yg^99wfs*9ahYo6L8';
-//hard-coded for now
-const _ADDRESS = '242 Mayson Ave NE';
 
 interface DeedData {
   county: string;
@@ -25,9 +24,8 @@ interface DeedData {
 }
 
 async function navigateToSource(address: string): Promise<void> {
-  const browser = await puppeteer.launch({ headless: false, devtools: true });
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  const navPromise = page.waitForNavigation();
 
   //goto deed data site
   await page.goto(_DATASOURCEPAGELOGIN);
@@ -64,12 +62,12 @@ async function navigateToSource(address: string): Promise<void> {
   //click 'view pt-61 information'
   await page.click('#BodyContent_lvDashboard_btnViewPT61_0');
 
-  scrapeData(page);
+  scrapeData(page, address);
 
-  // browser.close();
+  browser.close();
 }
 
-async function scrapeData(page: Page): Promise<DeedData> {
+async function scrapeData(page: Page, address: string): Promise<DeedData> {
   const county = await page.waitForSelector(
     `#BodyContent_lvFinalViews_ucCombinedQuickView_0_ucPT61QuickView_0_lblCountyName_0`
   );
@@ -114,8 +112,7 @@ async function scrapeData(page: Page): Promise<DeedData> {
     dateOfSale: new Date(await dateOfSale.evaluate((e) => e.textContent)),
     deedBook: parseInt(await deedBook.evaluate((e) => e.textContent)),
     deedPage: parseInt(await deedPage.evaluate((e) => e.textContent)),
-    //!! hard coded for now
-    propertyAddress: _ADDRESS,
+    propertyAddress: address,
     propertyValue: parseInt(
       await propertyValue.evaluate((e) => e.textContent.replace(/[^0-9]/g, ''))
     ),
@@ -136,5 +133,3 @@ async function scrapeData(page: Page): Promise<DeedData> {
   console.log(DeedData);
   return DeedData;
 }
-
-navigateToSource(_ADDRESS);
