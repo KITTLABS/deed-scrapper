@@ -23,11 +23,20 @@ interface DeedData {
   sellerAddress: string;
 }
 
+//navigates to source of deed data
 async function navigateToSource(address: string): Promise<void> {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
-  //goto deed data site
+  await navigateSource(page, address);
+
+  scrapeData(page, address);
+
+  browser.close();
+}
+
+//navigate to page with deed data
+async function navigateSource(page: puppeteer.Page, address: string) {
   await page.goto(_DATASOURCEPAGELOGIN);
 
   //click login [top right]
@@ -61,10 +70,6 @@ async function navigateToSource(address: string): Promise<void> {
   await page.waitForSelector('#BodyContent_lvDashboard_btnViewPT61_0');
   //click 'view pt-61 information'
   await page.click('#BodyContent_lvDashboard_btnViewPT61_0');
-
-  scrapeData(page, address);
-
-  browser.close();
 }
 
 async function scrapeData(page: Page, address: string): Promise<DeedData> {
@@ -130,6 +135,5 @@ async function scrapeData(page: Page, address: string): Promise<DeedData> {
     sellerName: await sellerName.evaluate((e) => e.textContent),
     sellerAddress: await sellerAddress.evaluate((e) => e.textContent),
   };
-  console.log(DeedData);
   return DeedData;
 }
