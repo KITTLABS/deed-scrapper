@@ -115,21 +115,21 @@ async function scrapeData(page: Page, address: string): Promise<DeedData> {
   const DeedData = {
     county: await county.evaluate((e) => e.textContent),
     dateOfSale: new Date(await dateOfSale.evaluate((e) => e.textContent)),
-    deedBook: parseInt(await deedBook.evaluate((e) => e.textContent)),
-    deedPage: parseInt(await deedPage.evaluate((e) => e.textContent)),
+    deedBook: parseInt(await deedBook.evaluate((e) => e.textContent)) || '',
+    deedPage: parseInt(await deedPage.evaluate((e) => e.textContent)) || '',
     propertyAddress: address,
     propertyValue: parseInt(
       await propertyValue.evaluate((e) => e.textContent.replace(/[^0-9]/g, ''))
-    ),
+    ) || '',
     propertyTaxDue: parseInt(
       await propertyTaxDue.evaluate((e) => e.textContent.replace(/[^0-9]/g, ''))
-    ),
+    ) || '',
     propertyLandDistrict: await propertyLandDistrict.evaluate(
       (e) => e.textContent
     ),
     propertyLandLot: parseInt(
       await propertyLandLot.evaluate((e) => e.textContent)
-    ),
+    ) || '',
     buyerName: await buyerName.evaluate((e) => e.textContent),
     buyerAddress: await buyerAddress.evaluate((e) => e.textContent),
     sellerName: await sellerName.evaluate((e) => e.textContent),
