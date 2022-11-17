@@ -67,12 +67,39 @@ async function navigateSource(page: puppeteer.Page, address: string) {
     page.waitForNavigation(),
   ]);
 
+  //wait for deed data selections to load
   await page.waitForSelector('#BodyContent_lvDashboard_btnViewPT61_0');
-  //click 'view pt-61 information'
-  await page.click('#BodyContent_lvDashboard_btnViewPT61_0');
+
+  const deedIndex = await getLatestDeedIndex(page);
+  //click 'view pt-61 information' for deed data page
+  await page.click(`#BodyContent_lvDashboard_btnViewPT61_${deedIndex}`);
+}
+
+async function getLatestDeedIndex(page: puppeteer.Page) {
+  //if more than one result for deed find latest
+  //otherwise return only deed available
+  if (await page.$('#BodyContent_lvDashboard_btnViewPT61_1')) {
+    let dateArray: Date[] = [];
+
+    for (let deedCounter = 0; deedCounter < 10; deedCounter++) {
+      if (await page.$(`#BodyContent_lvDashboard_btnViewPT61_${deedCounter}`)) {
+        let element = await page.waitForSelector(
+          `#BodyContent_lvDashboard_lblDashboardSaleDate_${deedCounter}`
+        );
+        let date = await element.evaluate((e) => e.textContent);
+        dateArray.push(new Date(date));
+      }
+    }
+    const latestDate = dateArray.reduce((a, b) => {
+      return a > b ? a : b;
+    });
+    return dateArray.indexOf(latestDate);
+  }
+  return 0;
 }
 
 async function scrapeData(page: Page, address: string): Promise<DeedData> {
+  //?? is there a more elegant way to do this?
   const county = await page.waitForSelector(
     `#BodyContent_lvFinalViews_ucCombinedQuickView_0_ucPT61QuickView_0_lblCountyName_0`
   );
