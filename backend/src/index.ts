@@ -10,13 +10,13 @@ const _PASSWORD = '799Ln38Lsjqs!yg^99wfs*9ahYo6L8';
 interface DeedData {
   county: string;
   dateOfSale: Date;
-  deedBook: number;
-  deedPage: number;
+  deedBook: number | string;
+  deedPage: number | string;
   propertyAddress: string;
-  propertyValue: number;
-  propertyTaxDue: number;
+  propertyValue: number | string;
+  propertyTaxDue: number | string;
   propertyLandDistrict: string;
-  propertyLandLot: number;
+  propertyLandLot: number | string;
   buyerName: string;
   buyerAddress: string;
   sellerName: string;
@@ -28,15 +28,15 @@ async function navigateToSource(address: string): Promise<void> {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
-  await navigateSource(page, address);
+  await navigateDataSource(page, address);
 
-  scrapeData(page, address);
+  await scrapeData(page, address);
 
   browser.close();
 }
 
 //navigate to page with deed data
-async function navigateSource(page: puppeteer.Page, address: string) {
+async function navigateDataSource(page: puppeteer.Page, address: string) {
   await page.goto(_DATASOURCEPAGELOGIN);
 
   //click login [top right]
